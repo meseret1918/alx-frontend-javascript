@@ -1,17 +1,15 @@
-import getBudgetObject from './7-getBudgetObject.js';
+export function taskFirst() {
+  const task = 'I prefer const when I can.';
+  return task;
+}
 
-export default function getFullBudgetObject(income, gdp, capita) {
-  const budget = getBudgetObject(income, gdp, capita);
-  const fullBudget = {
-    ...budget,
-    getIncomeInDollars(income) {
-      return `$${income}`;
-    },
-    getIncomeInEuros(income) {
-      return `${income} euros`;
-    },
-  };
+export function getLast() {
+  return ' is okay';
+}
 
-  return fullBudget;
+export function taskNext() {
+  let combination = 'But sometimes let';
+  combination += getLast();
+  return combination;
 }
 
