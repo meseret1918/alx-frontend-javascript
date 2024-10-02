@@ -1,20 +1,21 @@
+// 6-final-user.js
 import signUpUser from './4-user-promise';
 import uploadPhoto from './5-photo-reject';
 
-export default function handleProfileSignup(firstName, lastName, fileName) {
+function handleProfileSignup(firstName, lastName, fileName) {
     const promises = [
         signUpUser(firstName, lastName),
-        uploadPhoto(fileName)
+        uploadPhoto(fileName),
     ];
 
     return Promise.allSettled(promises)
-        .then(results => {
-            return results.map(result => {
-                return {
-                    status: result.status,
-                    value: result.value || result.reason // Use value or reason based on promise status
-                };
-            });
+        .then((results) => {
+            return results.map((result) => ({
+                status: result.status,
+                value: result.status === 'fulfilled' ? result.value : result.reason,
+            }));
         });
 }
+
+export default handleProfileSignup; // Export as default
 
