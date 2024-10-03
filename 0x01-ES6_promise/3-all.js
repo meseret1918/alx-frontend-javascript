@@ -1,18 +1,16 @@
-import { uploadPhoto, createUser } from './utils.js';
+import { uploadPhoto, createUser } from './utils';
 
 function handleProfileSignup() {
-    Promise.all([uploadPhoto(), createUser()])
-        .then((results) => {
-            const [photoResult, userResult] = results;
-            // Access the properties based on your existing function implementations
-            const firstName = userResult.firstName;
-            const lastName = userResult.lastName;
-            console.log(`${firstName} ${lastName}`);
-        })
-        .catch(() => {
-            console.log('Signup system offline');
-        });
+  // Use Promise.all to handle multiple promises
+  Promise.all([uploadPhoto(), createUser()])
+    .then((responses) => {
+      const [uploadResponse, userResponse] = responses;
+      // Log the required properties
+      console.log(uploadResponse.body, userResponse.firstName, userResponse.lastName);
+    })
+    .catch(() => {
+      // Log error message in case of rejection
+      console.log('Signup system offline');
+    });
 }
-
 export default handleProfileSignup;
-
