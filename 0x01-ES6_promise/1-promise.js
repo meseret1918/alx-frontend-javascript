@@ -10,6 +10,4 @@ const getFullResponseFromAPI = (success) =>
     }
   });
 
-// Correct the export statement here
 export default getFullResponseFromAPI;
-
