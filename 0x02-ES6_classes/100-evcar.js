@@ -1,13 +1,23 @@
-import Car from './10-car.js';
+/* eslint-disable no-underscore-dangle */
+import Car from './10-car';
 
 export default class EVCar extends Car {
   constructor(brand, motor, color, range) {
     super(brand, motor, color);
-    this._range = range;
+    this.range = range;
+  }
+
+  get range() {
+    return this._range;
+  }
+
+  set range(value) {
+    this._range = value;
   }
 
   cloneCar() {
-    // Return an instance of Car instead of EVCar
-    return new Car(undefined, undefined, undefined);
+    const Species = super.constructor[Symbol.species];
+
+    return new Species();
   }
 }
